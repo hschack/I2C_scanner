@@ -10,12 +10,13 @@
 // --------------------------------------
 
 #include <Wire.h>
-
+//            SDA  SCL
+TwoWire Wire1(PB7, PB6); //
 // Set I2C bus to use: Wire, Wire1, etc.
-#define WIRE Wire
+//#define WIRE Wire1
 
 void setup() {
-  WIRE.begin();
+  Wire1.begin();
 
   Serial.begin(115200);
   while (!Serial)
@@ -36,8 +37,8 @@ void loop() {
     // The i2c_scanner uses the return value of
     // the Write.endTransmisstion to see if
     // a device did acknowledge to the address.
-    WIRE.beginTransmission(address);
-    error = WIRE.endTransmission();
+    Wire1.beginTransmission(address);
+    error = Wire1.endTransmission();
 
     if (error == 0)
     {
